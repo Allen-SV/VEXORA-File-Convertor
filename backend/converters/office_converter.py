@@ -2,14 +2,25 @@ import subprocess
 import tempfile
 import os
 import shutil
-import pymupdf
 import io
 import zipfile
-import openpyxl
 import csv
 
+import openpyxl
+import pymupdf
 
-LIBREOFFICE_PATH = r"C:\Program Files\LibreOffice\program\soffice.exe"
+
+# Find LibreOffice automatically.
+# Works on both Windows and Linux/Render.
+LIBREOFFICE_PATH = shutil.which("soffice")
+
+if LIBREOFFICE_PATH is None:
+    if os.name == "nt":
+        LIBREOFFICE_PATH = (
+            r"C:\Program Files\LibreOffice\program\soffice.exe"
+        )
+    else:
+        LIBREOFFICE_PATH = "/usr/bin/soffice"
 
 
 def docx_to_pdf(file):
@@ -49,6 +60,7 @@ def docx_to_pdf(file):
         output = open(pdf_path, "rb")
 
         return output
+
 
 def pptx_to_pdf(file):
 
@@ -137,6 +149,7 @@ def pptx_to_images(file, target_format):
 
         else:
             document.close()
+
             raise ValueError(
                 "Unsupported image format"
             )
@@ -220,6 +233,7 @@ def xlsx_to_csv(file):
             output.getvalue().encode("utf-8")
         )
 
+
 def xlsx_to_pdf(file):
 
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -258,6 +272,7 @@ def xlsx_to_pdf(file):
 
         return output
 
+
 def csv_to_xlsx(file):
 
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -283,7 +298,6 @@ def csv_to_xlsx(file):
             reader = csv.reader(csv_file)
 
             for row in reader:
-
                 sheet.append(row)
 
         output = io.BytesIO()
