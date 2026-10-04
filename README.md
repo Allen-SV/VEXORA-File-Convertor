@@ -25,7 +25,6 @@ Supported image formats:
 - JPG
 - JPEG
 - WEBP
-- BMP
 
 Available conversions:
 
@@ -33,7 +32,6 @@ Available conversions:
 - Image → JPEG
 - Image → PNG
 - Image → WEBP
-- Image → BMP
 - Image → PDF
 - Multiple Images → PDF
 - Multiple Images → Image ZIP
