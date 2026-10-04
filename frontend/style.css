@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080808;
+    color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Subtle orange/red ambient glow */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: -250px;
+    left: -250px;
+    width: 550px;
+    height: 550px;
+    background: #ff6b00;
+    opacity: 0.08;
+    filter: blur(120px);
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    bottom: -250px;
+    right: -250px;
+    width: 550px;
+    height: 550px;
+    background: #ff3d00;
+    opacity: 0.08;
+    filter: blur(120px);
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 850px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.subtitle {
+    color: #999999;
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+/* Upload area */
+
+.upload-area {
+    background: #111111;
+    border: 2px dashed #3a3a3a;
+    border-radius: 18px;
+    padding: 55px 30px;
+    transition: 0.25s ease;
+    box-shadow: 0 0 30px rgba(255, 107, 0, 0.03);
+}
+
+.upload-area:hover {
+    border-color: #ff6b00;
+    background: #141414;
+    box-shadow: 0 0 35px rgba(255, 107, 0, 0.12);
+}
+
+.upload-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.upload-area h2 {
+    margin-bottom: 10px;
+}
+
+.upload-area p {
+    color: #999999;
+    margin: 8px 0;
+}
+
+/* Browse button */
+
+.browse-button {
+    display: inline-block;
+    background: #ff6b00;
+    color: #ffffff;
+    padding: 12px 25px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: 0.2s;
+}
+
+.browse-button:hover {
+    background: #ff8a1f;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+}
+
+.file-info {
+    font-size: 14px;
+}
+
+/* Selected files */
+
+.file-section {
+    margin-top: 30px;
+    background: #111111;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    border: 1px solid #242424;
+}
+
+.file-section h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: #181818;
+    border-radius: 10px;
+    border: 1px solid #292929;
+}
+
+.file-item:hover {
+    border-color: #4a2a16;
+}
+
+.remove-button {
+    border: none;
+    background: #2a1512;
+    color: #ff5c35;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.remove-button:hover {
+    background: #401915;
+    color: #ff7048;
+}
+
+/* Add files */
+
+.add-files-button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 10px 18px;
+    border: 1px solid #ff6b00;
+    color: #ff8a1f;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.add-files-button:hover {
+    background: #24150d;
+    box-shadow: 0 0 15px rgba(255, 107, 0, 0.12);
+}
+
+/* Conversion section */
+
+.conversion-section {
+    margin-top: 25px;
+    background: #111111;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #242424;
+}
+
+.conversion-section label {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#formatSelect {
+    padding: 11px 15px;
+    border: 1px solid #383838;
+    border-radius: 8px;
+    background: #181818;
+    color: #f5f5f5;
+    font-size: 15px;
+    outline: none;
+}
+
+#formatSelect:focus {
+    border-color: #ff6b00;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.12);
+}
+
+/* Convert button */
+
+#convertButton {
+    display: block;
+    margin: 20px auto 0;
+    padding: 13px 35px;
+    border: none;
+    border-radius: 9px;
+    background: #ff6b00;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#convertButton:hover {
+    background: #ff8a1f;
+    box-shadow: 0 0 22px rgba(255, 107, 0, 0.3);
+}
+
+#convertButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Status */
+
+.status {
+    margin-top: 20px;
+    font-weight: 600;
+    min-height: 25px;
+    color: #ff8a1f;
+}
+
+/* Hidden elements */
+
+.hidden {
+    display: none;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+        margin: 30px auto;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .upload-area {
+        padding: 40px 20px;
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .conversion-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .conversion-section label {
+        margin: 0;
+    }
+
+    #formatSelect {
+        width: 100%;
+    }
+
+    #convertButton {
+        width: 100%;
+    }
+}
+
+/* Drag and drop */
+
+.upload-area.drag-active {
+    border-color: #ff6b00;
+    background: #1b120c;
+    transform: scale(1.01);
+    box-shadow: 0 0 35px rgba(255, 107, 0, 0.18);
+}
