@@ -1,4 +1,4 @@
-import fitz
+import pymupdf
 import io
 import zipfile
 
@@ -7,7 +7,7 @@ def pdf_to_images(file, target_format):
 
     pdf_data = file.read()
 
-    document = fitz.open(
+    document = pymupdf.open(
         stream=pdf_data,
         filetype="pdf"
     )
@@ -31,13 +31,12 @@ def pdf_to_images(file, target_format):
         image_format = "webp"
 
     else:
+        document.close()
         raise ValueError(
             "Unsupported image format"
         )
 
-
     zip_buffer = io.BytesIO()
-
 
     with zipfile.ZipFile(
         zip_buffer,
@@ -54,27 +53,23 @@ def pdf_to_images(file, target_format):
             ]
 
             pixmap = page.get_pixmap(
-                matrix=fitz.Matrix(2, 2),
+                matrix=pymupdf.Matrix(2, 2),
                 alpha=False
             )
-
 
             image_bytes = pixmap.tobytes(
                 image_format
             )
-
 
             filename = (
                 f"page_{page_number + 1}."
                 f"{extension}"
             )
 
-
             zip_file.writestr(
                 filename,
                 image_bytes
             )
-
 
     document.close()
 
